@@ -1,98 +1,155 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+<div align="center">
+  <img src="https://nestjs.com/img/logo_text.svg" alt="NestJS" height="64" />
+  <h1>Sanchat – Backend</h1>
+  <p><b>NestJS 11 + TypeScript + Drizzle ORM</b></p>
+  <p>Typed, environment-safe, and ready for production. Validated with <b>Zod</b>, powered by <b>pnpm</b>.</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+  <!-- Badges -->
+  <p>
+    <a href="https://nodejs.org/en/about/releases/"><img src="https://img.shields.io/badge/node-%3E%3D18%20LTS-339933?logo=node.js&logoColor=white" alt="Node LTS >=18" /></a>
+    <img src="https://img.shields.io/badge/NestJS-11-E0234E?logo=nestjs&logoColor=white" alt="NestJS 11" />
+    <img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" alt="TypeScript 5" />
+    <img src="https://img.shields.io/badge/Drizzle-ORM-0B3B5E" alt="Drizzle ORM" />
+    <img src="https://img.shields.io/badge/CI-Coming%20Soon-999999?logo=githubactions&logoColor=white" alt="CI" />
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome" />
+  </p>
+</div>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## ✨ Features
+- **NestJS 11** with **TypeScript 5**
+- **Environment validation** with **Zod** (`ConfigModule` global)
+- **Per-environment `.env` files** (`development` / `test` / `production`)
+- **Drizzle ORM** ready (modular Database layer)
+- **pnpm** for fast, reproducible installs
+- ESLint + Prettier + Jest
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+> 🔒 Secrets are never committed. Only `.env.template` lives in the repo.
 
-## Project setup
+---
 
-```bash
-$ pnpm install
-```
+## 📦 Prerequisites
+- 🟢 Node.js **LTS** (>= 18; recommended 20)
+- 📦 **pnpm** package manager  
+  Install: `npm i -g pnpm` (or Corepack: `corepack enable && corepack prepare pnpm@latest --activate`)
+- 🐘 PostgreSQL (or a connection string supported by your Drizzle client)
 
-## Compile and run the project
+---
 
-```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
-```
-
-## Run tests
+## 🚀 Getting Started
 
 ```bash
-# unit tests
-$ pnpm run test
+# 1) Install deps
+pnpm install
 
-# e2e tests
-$ pnpm run test:e2e
+# 2) Create per-environment env files (see template below)
+cp .env.template .env.development   # Windows: copy .env.template .env.development
 
-# test coverage
-$ pnpm run test:cov
+# 3) Run in development (watch mode)
+pnpm run start:dev
 ```
 
-## Deployment
+### 🔧 Environment Variables
+We validate envs at startup with Zod. If something is missing or invalid, boot will fail with a readable error.
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+`.env.template`
+```dotenv
+NODE_ENV=development
+PORT=3000
+DATABASE_URL=postgres://user:password@localhost:5432/your_database
+```
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+`.env.development`
+```dotenv
+NODE_ENV=development
+PORT=3000
+DATABASE_URL=postgres://user:password@localhost:5432/sanchat_dev
+```
 
+`.env.test`
+```dotenv
+NODE_ENV=test
+PORT=4000
+DATABASE_URL=postgres://user:password@localhost:5432/sanchat_test
+```
+
+`.env.production`
+```dotenv
+NODE_ENV=production
+PORT=8080
+DATABASE_URL=postgres://user:password@localhost:5432/sanchat_prod
+```
+
+> ℹ️ The app loads `.env.${NODE_ENV}` first, then falls back to `.env` if present.
+
+---
+
+## 🧭 Project Structure
+
+```
+sanchat-backend/
+├─ src/
+│  ├─ app.controller.ts
+│  ├─ app.module.ts              # ConfigModule is global; env validation wired here
+│  ├─ app.service.ts
+│  ├─ config/
+│  │  └─ env.validation.ts       # Zod schema for environment variables
+│  └─ database/                  # (Coming next) DatabaseModule/Service with Drizzle ORM
+├─ .env.template
+├─ package.json
+├─ pnpm-lock.yaml
+└─ README.md
+```
+
+---
+
+## 🧪 Testing
 ```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
+pnpm run test          # unit tests
+pnpm run test:watch    # watch mode
+pnpm run test:cov      # coverage
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Resources
+## 📜 Available Scripts
 
-Check out a few resources that may come in handy when working with NestJS:
+| Command                  | Description                                    |
+| ------------------------ | ---------------------------------------------- |
+| `pnpm run start:dev`     | Start in development with watch (ENV=dev)      |
+| `pnpm run start`         | Start in production mode (non-compiled)        |
+| `pnpm run build`         | Compile TypeScript to `dist/`                  |
+| `pnpm run start:prod`    | Run compiled app (`node dist/main`)            |
+| `pnpm run test`          | Run unit tests                                 |
+| `pnpm run test:watch`    | Run tests in watch mode                        |
+| `pnpm run test:cov`      | Test coverage                                  |
+| `pnpm run lint`          | ESLint (Prettier config)                       |
+| `pnpm run format`        | Prettier format                                |
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+---
 
-## Support
+## 🧰 Tech Stack
+- ⚙️ NestJS 11
+- 🟦 TypeScript 5
+- 🧪 Jest
+- 🧹 ESLint + Prettier
+- 🧩 Zod (env validation)
+- 🗄️ Drizzle ORM (database layer)
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+---
 
-## Stay in touch
+## 🛠️ Troubleshooting
+- **Environment validation error** → Check your `.env.<NODE_ENV>` values and match the template.
+- **Node version** → Use Node LTS (>=18). On Windows, install **nvm-windows** to switch versions.
+- **pnpm “approve-builds”** → Since pnpm v10, some postinstall scripts are blocked. Allow if needed:
+  ```bash
+  pnpm approve-builds
+  ```
+- **Port already in use** → Change `PORT` in your env file or stop the other process.
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+---
 
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+<div align="center">
+  <sub>Made with ❤️ using NestJS. PRs and issues are welcome.</sub>
+</div>
